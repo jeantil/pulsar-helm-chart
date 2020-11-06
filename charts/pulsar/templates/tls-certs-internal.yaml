@@ -25,7 +25,6 @@ apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
   name: "{{ template "pulsar.fullname" . }}-{{ .Values.tls.proxy.cert_name }}"
-  namespace: {{ .Values.namespace }}
 spec:
   # Secret names are always required.
   secretName: "{{ .Release.Name }}-{{ .Values.tls.proxy.cert_name }}"
@@ -35,7 +34,7 @@ spec:
 {{ toYaml .Values.tls.common.organization | indent 2 }}
   # The use of the common name field has been deprecated since 2000 and is
   # discouraged from being used.
-  commonName: "*.{{ template "pulsar.fullname" . }}-{{ .Values.proxy.component }}.{{ .Values.namespace }}.svc.{{ .Values.clusterDomain }}"
+  commonName: "*.{{ template "pulsar.fullname" . }}-{{ .Values.proxy.component }}.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }}"
   isCA: false
   keySize: {{ .Values.tls.common.keySize }}
   keyAlgorithm: {{ .Values.tls.common.keyAlgorithm }}
@@ -45,7 +44,7 @@ spec:
     - client auth
   # At least one of a DNS Name, USI SAN, or IP address is required.
   dnsNames:
-    -  "*.{{ template "pulsar.fullname" . }}-{{ .Values.proxy.component }}.{{ .Values.namespace }}.svc.{{ .Values.clusterDomain }}"
+    -  "*.{{ template "pulsar.fullname" . }}-{{ .Values.proxy.component }}.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }}"
     -  "{{ template "pulsar.fullname" . }}-{{ .Values.proxy.component }}"
   # Issuer references are always required.
   issuerRef:
@@ -64,7 +63,6 @@ apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
   name: "{{ template "pulsar.fullname" . }}-{{ .Values.tls.broker.cert_name }}"
-  namespace: {{ .Values.namespace }}
 spec:
   # Secret names are always required.
   secretName: "{{ .Release.Name }}-{{ .Values.tls.broker.cert_name }}"
@@ -74,7 +72,7 @@ spec:
 {{ toYaml .Values.tls.common.organization | indent 2 }}
   # The use of the common name field has been deprecated since 2000 and is
   # discouraged from being used.
-  commonName: "*.{{ template "pulsar.fullname" . }}-{{ .Values.broker.component }}.{{ .Values.namespace }}.svc.{{ .Values.clusterDomain }}"
+  commonName: "*.{{ template "pulsar.fullname" . }}-{{ .Values.broker.component }}.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }}"
   isCA: false
   keySize: {{ .Values.tls.common.keySize }}
   keyAlgorithm: {{ .Values.tls.common.keyAlgorithm }}
@@ -84,7 +82,7 @@ spec:
     - client auth
   # At least one of a DNS Name, USI SAN, or IP address is required.
   dnsNames:
-    -  "*.{{ template "pulsar.fullname" . }}-{{ .Values.broker.component }}.{{ .Values.namespace }}.svc.{{ .Values.clusterDomain }}"
+    -  "*.{{ template "pulsar.fullname" . }}-{{ .Values.broker.component }}.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }}"
     -  "{{ template "pulsar.fullname" . }}-{{ .Values.broker.component }}"
   # Issuer references are always required.
   issuerRef:
@@ -103,7 +101,6 @@ apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
   name: "{{ template "pulsar.fullname" . }}-{{ .Values.tls.bookie.cert_name }}"
-  namespace: {{ .Values.namespace }}
 spec:
   # Secret names are always required.
   secretName: "{{ .Release.Name }}-{{ .Values.tls.bookie.cert_name }}"
@@ -113,7 +110,7 @@ spec:
 {{ toYaml .Values.tls.common.organization | indent 2 }}
   # The use of the common name field has been deprecated since 2000 and is
   # discouraged from being used.
-  commonName: "*.{{ template "pulsar.fullname" . }}-{{ .Values.bookkeeper.component }}.{{ .Values.namespace }}.svc.{{ .Values.clusterDomain }}"
+  commonName: "*.{{ template "pulsar.fullname" . }}-{{ .Values.bookkeeper.component }}.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }}"
   isCA: false
   keySize: {{ .Values.tls.common.keySize }}
   keyAlgorithm: {{ .Values.tls.common.keyAlgorithm }}
@@ -122,7 +119,7 @@ spec:
     - server auth
     - client auth
   dnsNames:
-    -  "*.{{ template "pulsar.fullname" . }}-{{ .Values.bookkeeper.component }}.{{ .Values.namespace }}.svc.{{ .Values.clusterDomain }}"
+    -  "*.{{ template "pulsar.fullname" . }}-{{ .Values.bookkeeper.component }}.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }}"
     -  "{{ template "pulsar.fullname" . }}-{{ .Values.bookkeeper.component }}"
   # Issuer references are always required.
   issuerRef:
@@ -141,7 +138,6 @@ apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
   name: "{{ template "pulsar.fullname" . }}-{{ .Values.tls.autorecovery.cert_name }}"
-  namespace: {{ .Values.namespace }}
 spec:
   # Secret names are always required.
   secretName: "{{ .Release.Name }}-{{ .Values.tls.autorecovery.cert_name }}"
@@ -151,7 +147,7 @@ spec:
 {{ toYaml .Values.tls.common.organization | indent 2 }}
   # The use of the common name field has been deprecated since 2000 and is
   # discouraged from being used.
-  commonName: "*.{{ template "pulsar.fullname" . }}-{{ .Values.autorecovery.component }}.{{ .Values.namespace }}.svc.{{ .Values.clusterDomain }}"
+  commonName: "*.{{ template "pulsar.fullname" . }}-{{ .Values.autorecovery.component }}.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }}"
   isCA: false
   keySize: {{ .Values.tls.common.keySize }}
   keyAlgorithm: {{ .Values.tls.common.keyAlgorithm }}
@@ -160,7 +156,7 @@ spec:
     - server auth
     - client auth
   dnsNames:
-    -  "*.{{ template "pulsar.fullname" . }}-{{ .Values.autorecovery.component }}.{{ .Values.namespace }}.svc.{{ .Values.clusterDomain }}"
+    -  "*.{{ template "pulsar.fullname" . }}-{{ .Values.autorecovery.component }}.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }}"
     -  "{{ template "pulsar.fullname" . }}-{{ .Values.autorecovery.component }}"
   # Issuer references are always required.
   issuerRef:
@@ -176,7 +172,6 @@ apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
   name: "{{ template "pulsar.fullname" . }}-{{ .Values.tls.toolset.cert_name }}"
-  namespace: {{ .Values.namespace }}
 spec:
   # Secret names are always required.
   secretName: "{{ .Release.Name }}-{{ .Values.tls.toolset.cert_name }}"
@@ -186,7 +181,7 @@ spec:
 {{ toYaml .Values.tls.common.organization | indent 2 }}
   # The use of the common name field has been deprecated since 2000 and is
   # discouraged from being used.
-  commonName: "*.{{ template "pulsar.fullname" . }}-{{ .Values.toolset.component }}.{{ .Values.namespace }}.svc.{{ .Values.clusterDomain }}"
+  commonName: "*.{{ template "pulsar.fullname" . }}-{{ .Values.toolset.component }}.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }}"
   isCA: false
   keySize: {{ .Values.tls.common.keySize }}
   keyAlgorithm: {{ .Values.tls.common.keyAlgorithm }}
@@ -195,7 +190,7 @@ spec:
     - server auth
     - client auth
   dnsNames:
-    -  "*.{{ template "pulsar.fullname" . }}-{{ .Values.toolset.component }}.{{ .Values.namespace }}.svc.{{ .Values.clusterDomain }}"
+    -  "*.{{ template "pulsar.fullname" . }}-{{ .Values.toolset.component }}.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }}"
     -  "{{ template "pulsar.fullname" . }}-{{ .Values.toolset.component }}"
   # Issuer references are always required.
   issuerRef:
@@ -211,7 +206,6 @@ apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
   name: "{{ template "pulsar.fullname" . }}-{{ .Values.tls.zookeeper.cert_name }}"
-  namespace: {{ .Values.namespace }}
 spec:
   # Secret names are always required.
   secretName: "{{ .Release.Name }}-{{ .Values.tls.zookeeper.cert_name }}"
@@ -221,7 +215,7 @@ spec:
 {{ toYaml .Values.tls.common.organization | indent 2 }}
   # The use of the common name field has been deprecated since 2000 and is
   # discouraged from being used.
-  commonName: "*.{{ template "pulsar.fullname" . }}-{{ .Values.zookeeper.component }}.{{ .Values.namespace }}.svc.{{ .Values.clusterDomain }}"
+  commonName: "*.{{ template "pulsar.fullname" . }}-{{ .Values.zookeeper.component }}.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }}"
   isCA: false
   keySize: {{ .Values.tls.common.keySize }}
   keyAlgorithm: {{ .Values.tls.common.keyAlgorithm }}
@@ -230,7 +224,7 @@ spec:
     - server auth
     - client auth
   dnsNames:
-    -  "*.{{ template "pulsar.fullname" . }}-{{ .Values.zookeeper.component }}.{{ .Values.namespace }}.svc.{{ .Values.clusterDomain }}"
+    -  "*.{{ template "pulsar.fullname" . }}-{{ .Values.zookeeper.component }}.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }}"
     -  "{{ template "pulsar.fullname" . }}-{{ .Values.zookeeper.component }}"
   # Issuer references are always required.
   issuerRef:

@@ -29,7 +29,6 @@ metadata:
 {{ toYaml . | indent 4 }}
 {{- end }}
   name: "{{ template "pulsar.fullname" . }}-{{ .Values.pulsar_manager.component }}"
-  namespace: {{ .Values.namespace }}
 spec:
 {{- if .Values.pulsar_manager.ingress.tls.enabled }}
   tls:

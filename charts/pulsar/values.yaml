@@ -17,13 +17,11 @@
 # under the License.
 #
 
-
 ###
 ### K8S Settings
 ###
 
 ## Namespace to deploy pulsar
-namespace: pulsar
 namespaceCreate: false
 
 ## clusterDomain as defined for your k8s cluster
@@ -279,7 +277,7 @@ zookeeper:
     follower: 2888
     leaderElection: 3888
   # nodeSelector:
-    # cloud.google.com/gke-nodepool: default-pool
+  # cloud.google.com/gke-nodepool: default-pool
   probe:
     liveness:
       enabled: true
@@ -326,9 +324,9 @@ zookeeper:
       ## If left undefined no storage class will be defined along with PVC
       ##
       # storageClass:
-        # type: pd-ssd
-        # fsType: xfs
-        # provisioner: kubernetes.io/gce-pd
+      # type: pd-ssd
+      # fsType: xfs
+      # provisioner: kubernetes.io/gce-pd
   ## Zookeeper configmap
   ## templates/zookeeper-configmap.yaml
   ##
@@ -372,8 +370,8 @@ bookkeeper:
     ##
     resources:
       # requests:
-        # memory: 4Gi
-        # cpu: 2
+      # memory: 4Gi
+      # cpu: 2
   replicaCount: 4
   updateStrategy:
     type: RollingUpdate
@@ -388,7 +386,7 @@ bookkeeper:
     http: 8000
     bookie: 3181
   # nodeSelector:
-    # cloud.google.com/gke-nodepool: default-pool
+  # cloud.google.com/gke-nodepool: default-pool
   probe:
     liveness:
       enabled: true
@@ -433,9 +431,9 @@ bookkeeper:
       ## If left undefined no storage class will be defined along with PVC
       ##
       # storageClass:
-        # type: pd-ssd
-        # fsType: xfs
-        # provisioner: kubernetes.io/gce-pd
+      # type: pd-ssd
+      # fsType: xfs
+      # provisioner: kubernetes.io/gce-pd
     ledgers:
       name: ledgers
       size: 50Gi
@@ -448,9 +446,9 @@ bookkeeper:
       ## If left undefined no storage class will be defined along with PVC
       ##
       # storageClass:
-        # type: pd-ssd
-        # fsType: xfs
-        # provisioner: kubernetes.io/gce-pd
+      # type: pd-ssd
+      # fsType: xfs
+      # provisioner: kubernetes.io/gce-pd
   ## Bookkeeper configmap
   ## templates/bookkeeper-configmap.yaml
   ##
@@ -509,7 +507,7 @@ autorecovery:
   ports:
     http: 8000
   # nodeSelector:
-    # cloud.google.com/gke-nodepool: default-pool
+  # cloud.google.com/gke-nodepool: default-pool
   affinity:
     anti_affinity: true
     # Set the anti affinity type. Valid values:
@@ -573,7 +571,7 @@ broker:
     pulsar: 6650
     pulsarssl: 6651
   # nodeSelector:
-    # cloud.google.com/gke-nodepool: default-pool
+  # cloud.google.com/gke-nodepool: default-pool
   probe:
     liveness:
       enabled: true
@@ -664,7 +662,7 @@ proxy:
     interval: 10s
     scrapeTimeout: 10s
   # nodeSelector:
-    # cloud.google.com/gke-nodepool: default-pool
+  # cloud.google.com/gke-nodepool: default-pool
   probe:
     liveness:
       enabled: true
@@ -755,7 +753,7 @@ dashboard:
   component: dashboard
   replicaCount: 1
   # nodeSelector:
-    # cloud.google.com/gke-nodepool: default-pool
+  # cloud.google.com/gke-nodepool: default-pool
   annotations: {}
   tolerations: []
   gracePeriod: 0
@@ -773,8 +771,8 @@ dashboard:
   service:
     annotations: {}
     ports:
-    - name: server
-      port: 80
+      - name: server
+        port: 80
   ingress:
     enabled: false
     annotations: {}
@@ -789,7 +787,6 @@ dashboard:
     path: "/"
     port: 80
 
-
 ## Pulsar ToolSet
 ## templates/toolset-deployment.yaml
 ##
@@ -798,7 +795,7 @@ toolset:
   useProxy: true
   replicaCount: 1
   # nodeSelector:
-    # cloud.google.com/gke-nodepool: default-pool
+  # cloud.google.com/gke-nodepool: default-pool
   annotations: {}
   tolerations: []
   gracePeriod: 30
@@ -831,7 +828,7 @@ prometheus:
     enabled: true
   replicaCount: 1
   # nodeSelector:
-    # cloud.google.com/gke-nodepool: default-pool
+  # cloud.google.com/gke-nodepool: default-pool
   annotations: {}
   tolerations: []
   gracePeriod: 5
@@ -855,9 +852,9 @@ prometheus:
       ## If left undefined no storage class will be defined along with PVC
       ##
       # storageClass:
-        # type: pd-standard
-        # fsType: xfs
-        # provisioner: kubernetes.io/gce-pd
+      # type: pd-standard
+      # fsType: xfs
+      # provisioner: kubernetes.io/gce-pd
   ## Prometheus service
   ## templates/prometheus-service.yaml
   ##
@@ -871,7 +868,7 @@ grafana:
   component: grafana
   replicaCount: 1
   # nodeSelector:
-    # cloud.google.com/gke-nodepool: default-pool
+  # cloud.google.com/gke-nodepool: default-pool
   annotations: {}
   tolerations: []
   gracePeriod: 30
